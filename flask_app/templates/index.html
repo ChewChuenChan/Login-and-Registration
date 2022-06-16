@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register and Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class=" container d-flex justify-content-around align-items-center mt-5">
+
+        <form action="/register" method="POST" class="flex-column bg-dark text-warning p-3" >
+            <h2 class="text-primary text-center">Register</h2>
+            {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                {% if messages %}
+                <div class ="alert alert-info" role="alert">
+                    {% for message in messages %}
+                        <p class="text-danger">{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <label class="form-label">First name:</label>
+            <input type="text" class="form-control mb-3" name="first_name" placeholder="first name">
+            <label class="form-label">Last name:</label>
+            <input type="text" class="form-control mb-3" name="last_name" placeholder="last name">
+            <label class="form-label">Email:</label>
+            <input type="text" class="form-control mb-3" name="email" placeholder="email">
+            <label class="form-label">Password:</label>
+            <input type="password" class="form-control mb-3" name="password" placeholder="password">
+            <label class="form-label">Confirm Password:</label>
+            <input type="password" class="form-control mb-3" name="confirm_pass" placeholder="confirm password">
+            <button class="btn btn-primary mb-3">Register</button>
+        </form>
+
+        <form action="/login" method="POST" class="flex-column bg-dark text-warning p-3" style="height:560px;" >
+            <h2 class="text-success text-center">Log in</h2>
+            {% with messages = get_flashed_messages(category_filter=["login"]) %}
+            {% if messages %}
+            <div class ="alert alert-info" role="alert">
+                {% for message in messages %}
+                    <p class="text-danger">{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+            <label class="form-label">Email:</label>
+            <input type="text" class="form-control mb-3" name="email" placeholder="email">
+            <label class="form-label">Password:</label>
+            <input type="password" class="form-control mb-3" name="password" placeholder="password">
+            <button class="btn btn-success mb-3">Log in</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
